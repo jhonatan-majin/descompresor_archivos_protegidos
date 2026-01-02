@@ -2,67 +2,91 @@
 
 ## ✨ Visión General
 
-BruteForce Pro es una herramienta de Python diseñada para ayudar a recuperar contraseñas de archivos comprimidos (principalmente ZIP, RAR, 7z, etc., compatibles con 7-Zip) utilizando un ataque de diccionario. Este script optimizado soporta procesamiento paralelo para acelerar la búsqueda de contraseñas, guarda el progreso y, para los usuarios de Windows, incluye una alarma sonora al encontrar la contraseña.
+**BruteForce Pro** es una herramienta de alto rendimiento desarrollada en Python para la recuperación de contraseñas de archivos comprimidos (**ZIP, RAR, 7z**) mediante ataques de diccionario. Diseñada para ser eficiente y resiliente, utiliza procesamiento paralelo y un sistema de guardado automático para optimizar cada segundo de procesamiento.
 
-¡No más esperas interminables sin saber si tu archivo se está descomprimiendo! Con BruteForce Pro, serás notificado al instante.
+> [!IMPORTANT]
+> **Optimizado para Windows**: Incluye una alarma sonora de sistema y notificaciones visuales inmediatas al encontrar la clave.
 
-[http://googleusercontent.com/image_generation_content/](https://drive.google.com/file/d/1ZRIvR3hkUSZZAW4rLgFUbDpqhDATXKZv/view?usp=sharing)0
+![Banner BruteForce Pro](https://raw.githubusercontent.com/tu-usuario/tu-repo/main/ruta-a-tu-imagen.png) 
+*(Sustituye este enlace por la URL de tu imagen una vez subida a GitHub)*
+
+---
+
+## ⚡ Características Principales
+
+* **Multiprocesamiento**: Aprovecha todos los núcleos de tu CPU para acelerar el descifrado.
+* **Sistema de Persistencia**: Si el proceso se detiene, el script guarda la línea exacta para reanudar después.
+* **Interfaz Visual**: Barras de progreso dinámicas con tiempo estimado mediante `tqdm`.
+* **Alarma Sonora**: Notificación auditiva persistente en Windows al completar con éxito.
+* **Extracción Automática**: Descomprime el contenido inmediatamente al hallar la clave correcta.
+
+---
 
 ## 📋 Requisitos
 
-Antes de usar BruteForce Pro, asegúrate de tener lo siguiente:
+Antes de comenzar, asegúrate de tener instalado:
 
-* **Python 3.x**: Descárgalo desde [python.org](https://www.python.org/downloads/).
-* **7-Zip**: La herramienta de línea de comandos `7z.exe` es esencial. Puedes descargarla e instalarla desde [7-zip.org](https://www.7-zip.org/download.html). Asegúrate de que la ruta a `7z.exe` esté configurada correctamente en el script (`RUTA_7Z`).
-* **Módulos de Python**:
-    * `tqdm`: Para barras de progreso elegantes.
-    * `winsound` (Solo Windows): Para las alarmas de sonido.
+1.  **Python 3.x**: [Descargar aquí](https://www.python.org/downloads/)
+2.  **7-Zip (CLI)**: Es obligatorio tener acceso al ejecutable `7z.exe`. [Descargar aquí](https://www.7-zip.org/download.html)
+3.  **Dependencias de Python**:
+    ```bash
+    pip install tqdm
+    ```
 
-Puedes instalar `tqdm` usando pip:
+---
 
-```bash
-pip install tqdm
+## ⚙️ Configuración
 
-⚙️ Configuración
-Instala 7-Zip: Asegúrate de que 7-Zip esté instalado en tu sistema. La ruta predeterminada esperada por el script es C:\Program Files\7-Zip\7z.exe. Si lo instalaste en una ubicación diferente, actualiza la variable RUTA_7Z en el script:
+1.  **Ruta de 7-Zip**: Por defecto, el script busca en `C:\Program Files\7-Zip\7z.exe`. Si tu instalación es diferente, modifica la variable `RUTA_7Z` en el código.
+2.  **Diccionario**: Prepara un archivo `.txt` con una contraseña por línea.
 
-Python
+---
 
-RUTA_7Z = r"C:\Program Files\7-Zip\7z.exe" # ¡Cambia esto si es necesario!
-Crea un Diccionario: Necesitarás un archivo de texto (.txt) que contenga una lista de posibles contraseñas, una por línea.
+## 🚀 Guía de Uso
 
-🚀 Uso
-Guarda el script: Guarda el código como bruteforce_pro.py.
+1.  **Ejecución**: Inicia el script desde tu terminal:
+    ```bash
+    python index.py
+    ```
+2.  **Configuración de sesión**:
+    * Indica la ruta del archivo comprimido.
+    * Indica la ruta del archivo de diccionario.
+    * **Selecciona el modo**: 
+        * `[1] Máximo poder`: Usa todos los hilos del procesador.
+        * `[2] Ahorro`: Usa un solo núcleo para tareas en segundo plano.
 
-Ejecuta el script desde la terminal:
+3.  **Reanudación**: Si el programa detecta el archivo `progreso_linea.txt`, te preguntará automáticamente si deseas continuar desde el último punto.
 
-Bash
+4.  **Alarma de Éxito**: Al encontrar la clave, sonará una alarma. Presiona `Ctrl + C` para detener el sonido.
 
-python index.py
-Sigue las instrucciones:
+---
 
-El script te pedirá la ruta del archivo comprimido a descifrar.
+## 📂 Archivos y Carpetas Generados
 
-Luego, te pedirá la ruta de tu archivo de diccionario.
+| Recurso | Función |
+| :--- | :--- |
+| `progreso_linea.txt` | Índice de la última línea procesada. |
+| `ultimo_intento.txt` | Registro de la última contraseña probada. |
+| `extraccion_exitosa/` | Carpeta con los archivos ya descomprimidos. |
+| `REPORTE_EXITO.txt` | Informe final con la clave encontrada y estadísticas. |
 
-Podrás elegir entre "Máximo Poder (Todos los núcleos)" para un rendimiento más rápido o "Ahorro (1 núcleo)" para usar menos recursos.
+---
 
-Reanudar el progreso: Si el script se interrumpe, creará un archivo progreso_linea.txt y ultimo_intento.txt. La próxima vez que ejecutes el script, te preguntará si deseas reanudar desde el último punto.
+## ⚠️ Aviso Legal
 
-🔔 Alarma de Éxito (Solo Windows)
-Cuando se encuentra la contraseña, BruteForce Pro no solo la mostrará en la consola, sino que también activará una alarma sonora del sistema Windows para que no te pierdas el momento. Además, mostrará una alerta visual constante en la terminal. Presiona Ctrl+C para detener la alarma.
+Este proyecto está destinado exclusivamente a la recuperación de archivos propios, auditorías de seguridad autorizadas o fines educativos. **El autor no se hace responsable del uso indebido o ilegal de esta herramienta.**
 
-📂 Archivos Generados
-progreso_linea.txt: Guarda la última línea del diccionario procesada, permitiendo reanudar el ataque.
+---
 
-ultimo_intento.txt: Registra la línea y la clave del último intento.
+## 🤝 Contribuciones e Ideas
 
-extracccion_exitosa/: Carpeta donde se descomprimirá el contenido si se encuentra la contraseña.
+¡Las mejoras son bienvenidas! Siéntete libre de abrir un **Issue** o enviar un **Pull Request** para:
+* Optimizar el motor de búsqueda.
+* Agregar compatibilidad nativa con Linux/macOS.
+* Implementar soporte para otros formatos de archivo.
 
-REPORTE_EXITO.txt: Contiene el nombre del archivo, la contraseña encontrada y el tiempo total del proceso.
+---
 
-🤝 Contribuciones
-¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar, optimizaciones o nuevas características, no dudes en abrir un issue o enviar un pull request.
+## 📄 Licencia
 
-📄 Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto está bajo la **Licencia MIT**. Consulta el archivo `LICENSE` para más información.

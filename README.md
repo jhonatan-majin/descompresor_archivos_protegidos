@@ -7,7 +7,7 @@
 > [!IMPORTANT]
 > **Optimizado para Windows**: Incluye una alarma sonora de sistema y notificaciones visuales inmediatas al encontrar la clave.
 
-![Banner BruteForce Pro](https://drive.google.com/file/d/1ZRIvR3hkUSZZAW4rLgFUbDpqhDATXKZv/view?usp=sharing) 
+https://drive.google.com/file/d/1ZRIvR3hkUSZZAW4rLgFUbDpqhDATXKZv/view?usp=sharing
 
 ---
 
